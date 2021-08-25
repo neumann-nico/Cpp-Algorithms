@@ -1,20 +1,35 @@
 #include <iostream>
+#include <vector>
 #include <set>
 
-const int N = 9;
-
-class SudokuSolver{
-private:
-    bool checkHorizontally(int sudoku[N][N], int &countZeros);
-    bool checkVertically(int sudoku[N][N], int &countZeros);
-    bool checkBlock(int sudoku[N][N], int start_x, int start_y, int &countZeros);
-    bool checkBlocks(int sudoku[N][N], int &countZeros);
-    void getNextFreePosition(int sudoku[N][N], int &row, int &column);
+class SudokuSolver {
 public:
-    bool isValid(int sudoku[N][N], int &countZeros);
-    bool isSolved(int sudoku[N][N]);
-    void readSudoku(int sudoku[N][N]);
-    void printSudoku(int sudoku[N][N]);
-    bool solveSudoku(int sudoku[N][N]);
+    explicit SudokuSolver(int fieldSize = 9);
+
+    bool isValid(int &countZeros);
+
+    bool isSolved();
+
+    void readSudokuFromCommandline();
+
+    void setSudoku(std::vector<std::vector<int>> &sudoku);
+
+    void printSudoku();
+
+    bool solveSudoku();
+
+private:
+    bool checkHorizontally(int &countZeros);
+
+    bool checkVertically(int &countZeros);
+
+    bool checkBlock(int start_x, int start_y, int &countZeros);
+
+    bool checkBlocks(int &countZeros);
+
+    void getNextFreePosition(int &row, int &column);
+
+    std::vector<std::vector<int>> sudoku;
+    const int N;
 };
 

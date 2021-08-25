@@ -1,9 +1,12 @@
-#include <iostream>
-#include <set>
+#include <cassert>
 #include "SudokuSolver/SudokuSolver.h"
 
+SudokuSolver::SudokuSolver(int fieldSize) : N(fieldSize) {
+    this->sudoku = std::vector<std::vector<int>>(N, std::vector<int>(N, 0));
+}
 
-void SudokuSolver::readSudoku(int sudoku[N][N]) {
+
+void SudokuSolver::readSudokuFromCommandline() {
     for (int i = 0; i < N; ++i) {
         std::string s;
         std::getline(std::cin, s);
@@ -13,7 +16,7 @@ void SudokuSolver::readSudoku(int sudoku[N][N]) {
     }
 }
 
-void SudokuSolver::printSudoku(int sudoku[N][N]) {
+void SudokuSolver::printSudoku() {
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
             std::cout << sudoku[i][j];
@@ -22,7 +25,7 @@ void SudokuSolver::printSudoku(int sudoku[N][N]) {
     }
 }
 
-bool SudokuSolver::checkHorizontally(int sudoku[N][N], int &countZeros) {
+bool SudokuSolver::checkHorizontally(int &countZeros) {
     for (int i = 0; i < N; ++i) {
         std::set<int> row_set;
         for (int j = 0; j < N; ++j) {
@@ -38,7 +41,7 @@ bool SudokuSolver::checkHorizontally(int sudoku[N][N], int &countZeros) {
     return true;
 }
 
-bool SudokuSolver::checkVertically(int sudoku[N][N], int &countZeros) {
+bool SudokuSolver::checkVertically(int &countZeros) {
     for (int i = 0; i < N; ++i) {
         // every row should be unique or 0
         std::set<int> row_set;
@@ -55,7 +58,7 @@ bool SudokuSolver::checkVertically(int sudoku[N][N], int &countZeros) {
     return true;
 }
 
-bool SudokuSolver::checkBlock(int sudoku[N][N], int start_x, int start_y, int &countZeros) {
+bool SudokuSolver::checkBlock(int start_x, int start_y, int &countZeros) {
     std::set<int> row_set;
     for (int i = start_x; i < 3; ++i) {
         for (int j = start_y; j < 3; ++j) {
@@ -71,10 +74,10 @@ bool SudokuSolver::checkBlock(int sudoku[N][N], int start_x, int start_y, int &c
     return true;
 }
 
-bool SudokuSolver::checkBlocks(int sudoku[N][N], int &countZeros) {
+bool SudokuSolver::checkBlocks(int &countZeros) {
     for (int i = 0; i < N; i += 3) {
         for (int j = 0; j < N; j += 3) {
-            if (!checkBlock(sudoku, i, j, countZeros)) {
+            if (!checkBlock(i, j, countZeros)) {
                 return false;
             }
         }
@@ -82,17 +85,16 @@ bool SudokuSolver::checkBlocks(int sudoku[N][N], int &countZeros) {
     return true;
 }
 
-bool SudokuSolver::isValid(int sudoku[N][N], int &countZeros) {
-    return checkHorizontally(sudoku, countZeros) && checkVertically(sudoku, countZeros)
-           && checkBlocks(sudoku, countZeros);
+bool SudokuSolver::isValid(int &countZeros) {
+    return checkHorizontally(countZeros) && checkVertically(countZeros) && checkBlocks(countZeros);
 }
 
-bool SudokuSolver::isSolved(int sudoku[N][N]) {
+bool SudokuSolver::isSolved() {
     int countZeros = 0;
-    return isValid(sudoku, countZeros) && countZeros == 0;
+    return isValid(countZeros) && countZeros == 0;
 }
 
-void SudokuSolver::getNextFreePosition(int sudoku[N][N], int &row, int &column) {
+void SudokuSolver::getNextFreePosition(int &row, int &column) {
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
             if (sudoku[i][j] == 0) {
@@ -104,19 +106,24 @@ void SudokuSolver::getNextFreePosition(int sudoku[N][N], int &row, int &column) 
     }
 }
 
-bool SudokuSolver::solveSudoku(int sudoku[N][N]) {
-    if (isSolved(sudoku)) return true;
+bool SudokuSolver::solveSudoku() {
+    if (isSolved()) return true;
 
     int i, j;
-    getNextFreePosition(sudoku, i, j);
+    getNextFreePosition(i, j);
     for (int k = 1; k <= N; ++k) {
         sudoku[i][j] = k;
         int countZeros = 0;
-        if (isValid(sudoku, countZeros)) {
-            if (solveSudoku(sudoku))
+        if (isValid(countZeros)) {
+            if (solveSudoku())
                 return true;
         }
         sudoku[i][j] = 0;
     }
     return false;
+}
+
+void SudokuSolver::setSudoku(std::vector<std::vector<int>> &sudoku) {
+    assert(this->sudoku.size() == sudoku.size());
+    this->sudoku = sudoku;
 }

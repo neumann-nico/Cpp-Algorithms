@@ -1,16 +1,14 @@
 #include <iostream>
-#include <set>
-#include "SudokuSolver.cpp"
+#include "SudokuSolver/SudokuSolver.h"
 
 int main() {
-    const int N = 9;
-    int sudoku[N][N] = {0};
+    int fieldSize = 9;
     std::cout << "Insert your sudoku here:" << std::endl;
-    SudokuSolver sudoku_solver;
-    sudoku_solver.readSudoku(sudoku);
-    
-    if (sudoku_solver.solveSudoku(sudoku)) {
-        sudoku_solver.printSudoku(sudoku);
+    SudokuSolver sudoku_solver(fieldSize);
+    sudoku_solver.readSudokuFromCommandline();
+
+    if (sudoku_solver.solveSudoku()) {
+        sudoku_solver.printSudoku();
     } else {
         std::cout << "No solution found!" << std::endl;
     }
