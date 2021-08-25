@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# cmake
+cmake-build-*
+build
+
+# Jetbrains / Clion
+*.idea*
+
+# code coverage
+coverage.info

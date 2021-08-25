@@ -1,0 +1,28 @@
+language: cpp
+os: linux
+compiler: g++
+
+env:
+  - CODECOV_TOKEN=87c92266-8690-4a9d-9ae1-be7c2ae1b076
+
+addons:
+  apt:
+    packages:
+      - lcov
+      - cmake
+
+script:
+  - ./build.bash
+  - cd build
+  - ctest -j $(nproc) --output-on-failure
+
+after_success:
+  # Create lcov report
+  - lcov --capture --directory . --output-file coverage.info
+  - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter system-files
+  - lcov --list coverage.info # debug info
+  # Uploading report to CodeCov
+  - bash <(curl -s https://codecov.io/bash) -f coverage.info || echo "Codecov did not collect coverage reports"
+
+notifications:
+  email: false
