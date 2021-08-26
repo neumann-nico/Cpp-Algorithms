@@ -2,9 +2,6 @@ language: cpp
 os: linux
 compiler: g++
 
-env:
-  - CODECOV_TOKEN=87c92266-8690-4a9d-9ae1-be7c2ae1b076
-
 addons:
   apt:
     packages:
