@@ -1,2 +1,2 @@
-add_subdirectory(SudokuSolver)
+add_subdirectory(Backtracking)
 add_subdirectory(Sorting)
