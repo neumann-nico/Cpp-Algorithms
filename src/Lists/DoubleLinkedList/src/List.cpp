@@ -9,13 +9,12 @@ template<typename T>
 void DoubleLinkedList<T>::addItemFront(T value) {
     auto *node = new Node<T>(value);
     if (this->isEmpty()) {
-        this->head = node;
         this->tail = node;
     } else {
         this->head->setPrevious(node);
         node->setNext(this->head);
-        this->head = node;
     }
+    this->head = node;
     ++this->size;
 }
 
@@ -24,12 +23,11 @@ void DoubleLinkedList<T>::addItemBack(T value) {
     auto *node = new Node<T>(value);
     if (this->isEmpty()) {
         this->head = node;
-        this->tail = node;
     } else {
         this->tail->setNext(node);
         node->setPrevious(this->tail);
-        this->tail = node;
     }
+    this->tail = node;
     ++this->size;
 }
 
@@ -38,37 +36,25 @@ void DoubleLinkedList<T>::removeItem(T value) {
     if (this->isEmpty()) return;
 
     if (this->head->getValue() == value) {
-        if (this->head->getNext() == nullptr) {
-            delete this->head;
-            --this->size;
-            this->head = nullptr;
-            this->tail = nullptr;
-        } else {
-            auto *temp = this->head->getNext();
-            delete this->head;
-            --this->size;
-            this->head = temp;
-            this->head->setPrevious(nullptr);
-        }
+        this->removeFirst();
     } else {
         auto *temp = this->head->getNext();
         while (temp != nullptr) {
             if (temp->getValue() == value) {
-                auto *temp2 = temp->getPrevious();
-                if (temp->getPrevious() != nullptr) temp->getPrevious()->setNext(temp->getNext());
-                if (temp->getNext() != nullptr) temp->getNext()->setPrevious(temp2);
-                if (temp == this->tail){
-                    if (temp->getNext() != nullptr) this->tail = temp->getNext();
-                    else this->tail = temp->getPrevious();
+                if (temp == this->tail) {
+                    this->removeLast();
+                } else {
+                    auto *temp2 = temp->getPrevious();
+                    if (temp->getPrevious() != nullptr) temp->getPrevious()->setNext(temp->getNext());
+                    if (temp->getNext() != nullptr) temp->getNext()->setPrevious(temp2);
+                    delete temp;
+                    --this->size;
                 }
-                delete temp;
-                --this->size;
                 return;
             }
             temp = temp->getNext();
         }
     }
-
 }
 
 template<typename T>
@@ -98,10 +84,10 @@ void DoubleLinkedList<T>::printReverseList() {
 
 template<typename T>
 std::vector<T> DoubleLinkedList<T>::getVector() {
-    std::vector<T> vec;
+    std::vector<T> vec(this->size);
     auto *temp = this->head;
-    while (temp != nullptr) {
-        vec.push_back(temp->getValue());
+    for (auto &item : vec) {
+        item = temp->getValue();
         temp = temp->getNext();
     }
     return vec;
@@ -118,7 +104,7 @@ void DoubleLinkedList<T>::reverse() {
 
     auto *temp = this->head;
     auto *temp2 = this->tail;
-    for (int i=0; i < (this->size/2); ++i){
+    for (int i = 0; i < (this->size / 2); ++i) {
         T val = temp->getValue();
         temp->setValue(temp2->getValue());
         temp2->setValue(val);
@@ -144,35 +130,31 @@ int DoubleLinkedList<T>::getSize() {
 
 template<typename T>
 void DoubleLinkedList<T>::removeFirst() {
-    if(this->isEmpty()) return;
+    if (this->isEmpty()) return;
 
-    if (this->head->getNext() == nullptr){
-        delete this->head;
-        this->head = nullptr;
+    auto *temp = this->head->getNext();
+    delete this->head;
+    this->head = temp;
+    --this->size;
+    if (this->size == 0) {
         this->tail = nullptr;
-    }
-    else{
-        auto *temp = this->head->getNext();
+    } else {
         temp->setPrevious(nullptr);
-        delete this->head;
-        this->head = temp;
     }
 }
 
 template<typename T>
 void DoubleLinkedList<T>::removeLast() {
-    if(this->isEmpty()) return;
+    if (this->isEmpty()) return;
 
-    if (this->head->getNext() == nullptr){
-        delete this->head;
-        this->head = nullptr;
-        this->tail = nullptr;
-    }
-    else {
+    if (this->head->getNext() == nullptr) {
+        this->removeFirst();
+    } else {
         auto *temp = this->tail->getPrevious();
         temp->setNext(nullptr);
         delete this->tail;
         this->tail = temp;
+        --this->size;
     }
 }
 

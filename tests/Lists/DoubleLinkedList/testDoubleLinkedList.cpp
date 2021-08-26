@@ -74,22 +74,23 @@ TEST(DoubleLinkedList, list_int_5) {
     DoubleLinkedList<int> list;
     list.removeFirst();
     EXPECT_TRUE(list.isEmpty());
-    list.removeLast();
-    EXPECT_TRUE(list.isEmpty());
 
     list.addItemFront(7);
     list.addItemBack(6);
     list.addItemBack(77);
     list.removeLast();
     EXPECT_EQ(list.getVector(), std::vector<int>({7, 6}));
+    EXPECT_EQ(list.getSize(),2);
 
     list.removeFirst();
     EXPECT_EQ(list.getVector(), std::vector<int>({6}));
+    EXPECT_EQ(list.getSize(),1);
 
     list.removeFirst();
     list.addItemFront(7);
     list.removeLast();
     EXPECT_TRUE(list.isEmpty());
+    EXPECT_EQ(list.getSize(),0);
 }
 
 TEST(DoubleLinkedList, printing) {
