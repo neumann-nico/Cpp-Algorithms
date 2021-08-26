@@ -1,0 +1,5 @@
+add_executable(DoubleLinkedList_test testDoubleLinkedList.cpp)
+
+target_link_libraries(DoubleLinkedList_test PRIVATE DoubleLinkedList gtest gtest_main)
+
+add_test(NAME DoubleLinkedList_test COMMAND DoubleLinkedList_test)
