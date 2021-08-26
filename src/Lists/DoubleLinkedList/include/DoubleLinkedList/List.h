@@ -22,6 +22,8 @@ public:
 
     void printReverseList();
 
+    void reverse();
+
     std::vector<T> getVector();
 
     Node<T> *getFirstItem();

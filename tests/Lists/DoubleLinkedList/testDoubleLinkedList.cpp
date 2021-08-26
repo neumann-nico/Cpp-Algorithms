@@ -85,6 +85,11 @@ TEST(DoubleLinkedList, list_int_5) {
 
     list.removeFirst();
     EXPECT_EQ(list.getVector(), std::vector<int>({6}));
+
+    list.removeFirst();
+    list.addItemFront(7);
+    list.removeLast();
+    EXPECT_TRUE(list.isEmpty());
 }
 
 TEST(DoubleLinkedList, printing) {
@@ -107,6 +112,21 @@ TEST(DoubleLinkedList, printing) {
     list.printReverseList();
     output = testing::internal::GetCapturedStdout();
     EXPECT_EQ(output, "[9, 7, 4, 3]\n");
+}
+
+TEST(DoubleLinkedList, reverse) {
+    DoubleLinkedList<int> list;
+    list.addItemFront(4);
+    list.addItemFront(3);
+    list.addItemBack(7);
+    list.addItemBack(9);
+
+    std::vector<int> vec({3, 4, 7, 9});
+    EXPECT_EQ(list.getVector(), vec);
+
+    list.reverse();
+    std::reverse(vec.begin(), vec.end());
+    EXPECT_EQ(list.getVector(), vec);
 }
 
 TEST(DoubleLinkedList, set_get_values) {

@@ -113,6 +113,21 @@ bool DoubleLinkedList<T>::isEmpty() {
 }
 
 template<typename T>
+void DoubleLinkedList<T>::reverse() {
+    if (this->size <= 1) return;
+
+    auto *temp = this->head;
+    auto *temp2 = this->tail;
+    for (int i=0; i < (this->size/2); ++i){
+        T val = temp->getValue();
+        temp->setValue(temp2->getValue());
+        temp2->setValue(val);
+        temp = temp->getNext();
+        temp2 = temp2->getPrevious();
+    }
+}
+
+template<typename T>
 Node<T> *DoubleLinkedList<T>::getFirstItem() {
     return this->head;
 }
