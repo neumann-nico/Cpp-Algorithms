@@ -1,4 +1,3 @@
-#include <iostream>
 #include "InsertionSort/InsertionSort.h"
 
 int main() {

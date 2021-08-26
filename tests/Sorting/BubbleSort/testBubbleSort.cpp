@@ -57,7 +57,6 @@ TEST(BubbleSort, sort_int_5) {
 }
 
 
-
 TEST(BubbleSort, sort_double_1) {
     std::vector<double> vec = {5.3, 2.34, 1.45, -2.444, 1.0, 0.};
 

@@ -1,10 +1,11 @@
 #include "gtest/gtest.h"
 #include "AbstractSort/AbstractSort.h"
 
-template <typename T>
-class AbstractSortTest : public AbstractSort<T>{
+template<typename T>
+class AbstractSortTest : public AbstractSort<T> {
 public:
-    explicit AbstractSortTest(std::vector<T> &vec) : AbstractSort<T>(vec){};
+    explicit AbstractSortTest(std::vector<T> &vec) : AbstractSort<T>(vec) {};
+
     void sort() override {};
 };
 
@@ -42,6 +43,11 @@ TEST(AbstractSort, print2) {
     EXPECT_EQ(output, "[a, d, f, e]\n");
 }
 
-template class AbstractSortTest<int>;
-template class AbstractSortTest<char>;
-template class AbstractSortTest<double>;
+template
+class AbstractSortTest<int>;
+
+template
+class AbstractSortTest<char>;
+
+template
+class AbstractSortTest<double>;
