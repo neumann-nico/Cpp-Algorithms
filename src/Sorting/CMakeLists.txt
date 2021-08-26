@@ -1,4 +1,5 @@
 add_subdirectory(AbstractSort)
 add_subdirectory(BubbleSort)
 add_subdirectory(InsertionSort)
+add_subdirectory(QuickSort)
 add_subdirectory(PerformanceAnalysis)
