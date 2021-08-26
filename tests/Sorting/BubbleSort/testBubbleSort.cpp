@@ -2,14 +2,14 @@
 #include "BubbleSort/BubbleSort.h"
 
 TEST(BubbleSort, sort_int_1) {
-    std::vector<int> vec = {0, 15, 41, 14, 24};
+    std::vector<int> vec = {0, 15, 41, 14, 24, 14};
 
     BubbleSort<int> bubble_sort(vec);
     EXPECT_FALSE(bubble_sort.isSorted());
 
     bubble_sort.sort();
     EXPECT_TRUE(bubble_sort.isSorted());
-    EXPECT_TRUE(bubble_sort.getVector() == std::vector<int>({0, 14, 15, 24, 41}));
+    EXPECT_EQ(bubble_sort.getVector(), std::vector<int>({0, 14, 14, 15, 24, 41}));
 }
 
 TEST(BubbleSort, sort_int_2) {
@@ -20,7 +20,7 @@ TEST(BubbleSort, sort_int_2) {
 
     bubble_sort.sort();
     EXPECT_TRUE(bubble_sort.isSorted());
-    EXPECT_TRUE(bubble_sort.getVector() == std::vector<int>({0, 1, 2, 3, 4, 5}));
+    EXPECT_EQ(bubble_sort.getVector(), std::vector<int>({0, 1, 2, 3, 4, 5}));
 }
 
 TEST(BubbleSort, sort_int_3) {
@@ -31,7 +31,7 @@ TEST(BubbleSort, sort_int_3) {
 
     bubble_sort.sort();
     EXPECT_TRUE(bubble_sort.isSorted());
-    EXPECT_TRUE(bubble_sort.getVector() == std::vector<int>({0, 1, 2, 3, 4, 5}));
+    EXPECT_EQ(bubble_sort.getVector(), std::vector<int>({0, 1, 2, 3, 4, 5}));
 }
 
 TEST(BubbleSort, sort_double_1) {
@@ -42,7 +42,7 @@ TEST(BubbleSort, sort_double_1) {
 
     bubble_sort.sort();
     EXPECT_TRUE(bubble_sort.isSorted());
-    EXPECT_TRUE(bubble_sort.getVector() == std::vector<double>({-2.444, 0., 1.0, 1.45, 2.34, 5.3}));
+    EXPECT_EQ(bubble_sort.getVector(), std::vector<double>({-2.444, 0., 1.0, 1.45, 2.34, 5.3}));
 }
 
 TEST(BubbleSort, sort_float_1) {
@@ -53,7 +53,7 @@ TEST(BubbleSort, sort_float_1) {
 
     bubble_sort.sort();
     EXPECT_TRUE(bubble_sort.isSorted());
-    EXPECT_TRUE(bubble_sort.getVector() == std::vector<float>({-2.444f, 0.f, 1.0f, 1.45f, 2.34f, 5.3f}));
+    EXPECT_EQ(bubble_sort.getVector(), std::vector<float>({-2.444f, 0.f, 1.0f, 1.45f, 2.34f, 5.3f}));
 }
 
 TEST(BubbleSort, sort_char_1) {
@@ -64,5 +64,5 @@ TEST(BubbleSort, sort_char_1) {
 
     bubble_sort.sort();
     EXPECT_TRUE(bubble_sort.isSorted());
-    EXPECT_TRUE(bubble_sort.getVector() == std::vector<char>({'a', 'e', 'g', 'z'}));
+    EXPECT_EQ(bubble_sort.getVector(), std::vector<char>({'a', 'e', 'g', 'z'}));
 }
