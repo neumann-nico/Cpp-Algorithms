@@ -3,13 +3,14 @@
 #include <iostream>
 
 template<typename T>
-DoubleLinkedList<T>::DoubleLinkedList() : head(nullptr), size(0) {}
+DoubleLinkedList<T>::DoubleLinkedList() : head(nullptr), tail(nullptr), size(0) {}
 
 template<typename T>
 void DoubleLinkedList<T>::addItemFront(T value) {
     auto *node = new Node<T>(value);
     if (this->isEmpty()) {
         this->head = node;
+        this->tail = node;
     } else {
         this->head->setPrevious(node);
         node->setNext(this->head);
@@ -23,10 +24,11 @@ void DoubleLinkedList<T>::addItemBack(T value) {
     auto *node = new Node<T>(value);
     if (this->isEmpty()) {
         this->head = node;
+        this->tail = node;
     } else {
-        auto *last = this->getLastItem();
-        last->setNext(node);
-        node->setPrevious(last);
+        this->tail->setNext(node);
+        node->setPrevious(this->tail);
+        this->tail = node;
     }
     ++this->size;
 }
@@ -40,6 +42,7 @@ void DoubleLinkedList<T>::removeItem(T value) {
             delete this->head;
             --this->size;
             this->head = nullptr;
+            this->tail = nullptr;
         } else {
             auto *temp = this->head->getNext();
             delete this->head;
@@ -54,6 +57,10 @@ void DoubleLinkedList<T>::removeItem(T value) {
                 auto *temp2 = temp->getPrevious();
                 if (temp->getPrevious() != nullptr) temp->getPrevious()->setNext(temp->getNext());
                 if (temp->getNext() != nullptr) temp->getNext()->setPrevious(temp2);
+                if (temp == this->tail){
+                    if (temp->getNext() != nullptr) this->tail = temp->getNext();
+                    else this->tail = temp->getPrevious();
+                }
                 delete temp;
                 --this->size;
                 return;
@@ -79,7 +86,7 @@ void DoubleLinkedList<T>::printList() {
 template<typename T>
 void DoubleLinkedList<T>::printReverseList() {
     std::cout << "[";
-    auto *temp = this->getLastItem();
+    auto *temp = this->tail;
     while (temp != nullptr) {
         std::cout << temp->getValue();
         if (temp->getPrevious() != nullptr) std::cout << ", ";
@@ -112,18 +119,46 @@ Node<T> *DoubleLinkedList<T>::getFirstItem() {
 
 template<typename T>
 Node<T> *DoubleLinkedList<T>::getLastItem() {
-    if (this->isEmpty()) return nullptr;
-
-    auto *temp = this->head;
-    while (temp->getNext() != nullptr) {
-        temp = temp->getNext();
-    }
-    return temp;
+    return this->tail;
 }
 
 template<typename T>
 int DoubleLinkedList<T>::getSize() {
     return this->size;
+}
+
+template<typename T>
+void DoubleLinkedList<T>::removeFirst() {
+    if(this->isEmpty()) return;
+
+    if (this->head->getNext() == nullptr){
+        delete this->head;
+        this->head = nullptr;
+        this->tail = nullptr;
+    }
+    else{
+        auto *temp = this->head->getNext();
+        temp->setPrevious(nullptr);
+        delete this->head;
+        this->head = temp;
+    }
+}
+
+template<typename T>
+void DoubleLinkedList<T>::removeLast() {
+    if(this->isEmpty()) return;
+
+    if (this->head->getNext() == nullptr){
+        delete this->head;
+        this->head = nullptr;
+        this->tail = nullptr;
+    }
+    else {
+        auto *temp = this->tail->getPrevious();
+        temp->setNext(nullptr);
+        delete this->tail;
+        this->tail = temp;
+    }
 }
 
 template

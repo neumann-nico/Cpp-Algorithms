@@ -53,6 +53,40 @@ TEST(DoubleLinkedList, list_int_3) {
     EXPECT_EQ(list.getVector(), std::vector<int>({7, 6}));
 }
 
+TEST(DoubleLinkedList, list_int_4) {
+    DoubleLinkedList<int> list;
+    list.removeItem(5);
+    EXPECT_TRUE(list.isEmpty());
+
+    list.addItemBack(6);
+    list.addItemFront(7);
+    list.addItemFront(10);
+    list.addItemBack(22);
+    list.removeItem(6);
+    EXPECT_EQ(list.getSize(), 3);
+    EXPECT_EQ(list.getVector(), std::vector<int>({10, 7, 22}));
+    list.removeItem(22);
+    EXPECT_EQ(list.getVector(), std::vector<int>({10, 7}));
+    EXPECT_EQ(list.getLastItem()->getValue(), 7);
+}
+
+TEST(DoubleLinkedList, list_int_5) {
+    DoubleLinkedList<int> list;
+    list.removeFirst();
+    EXPECT_TRUE(list.isEmpty());
+    list.removeLast();
+    EXPECT_TRUE(list.isEmpty());
+
+    list.addItemFront(7);
+    list.addItemBack(6);
+    list.addItemBack(77);
+    list.removeLast();
+    EXPECT_EQ(list.getVector(), std::vector<int>({7, 6}));
+
+    list.removeFirst();
+    EXPECT_EQ(list.getVector(), std::vector<int>({6}));
+}
+
 TEST(DoubleLinkedList, printing) {
     DoubleLinkedList<int> list;
     testing::internal::CaptureStdout();

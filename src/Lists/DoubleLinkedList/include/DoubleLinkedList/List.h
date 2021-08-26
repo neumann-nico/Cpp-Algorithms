@@ -12,6 +12,10 @@ public:
 
     void addItemBack(T value);
 
+    void removeFirst();
+
+    void removeLast();
+
     void removeItem(T item);
 
     void printList();
@@ -30,5 +34,6 @@ public:
 
 private:
     Node<T> *head;
+    Node<T> *tail;
     int size;
 };
