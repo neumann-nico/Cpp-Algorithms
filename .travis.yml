@@ -18,7 +18,7 @@ script:
 
 after_success:
   # Create lcov report
-  - lcov --capture --directory . --output-file coverage.info
+  - lcov --capture --directory src --output-file coverage.info
   - lcov --remove coverage.info '/usr/*' --output-file coverage.info # filter system-files
   - lcov --list coverage.info # debug info
   # Uploading report to CodeCov
