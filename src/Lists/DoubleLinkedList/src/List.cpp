@@ -80,9 +80,9 @@ template<typename T>
 void DoubleLinkedList<T>::printReverseList() {
     std::cout << "[";
     auto *temp = this->getLastItem();
-    while (temp->getPrevious() != nullptr) {
+    while (temp != nullptr) {
         std::cout << temp->getValue();
-        if (temp->getPrevious() == nullptr) std::cout << ", ";
+        if (temp->getPrevious() != nullptr) std::cout << ", ";
         temp = temp->getPrevious();
     }
     std::cout << "]" << std::endl;
