@@ -17,6 +17,7 @@ TEST(AbstractSort, set_get_int) {
     EXPECT_FALSE(sorter.isSorted());
 
     std::vector<int> vec2 = {0, 41, 4, 4, 34};
+    sorter.setVector(vec2);
     EXPECT_EQ(sorter.getVector(), vec2);
     EXPECT_FALSE(sorter.isSorted());
 }
