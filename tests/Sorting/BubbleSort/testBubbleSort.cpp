@@ -34,6 +34,30 @@ TEST(BubbleSort, sort_int_3) {
     EXPECT_EQ(bubble_sort.getVector(), std::vector<int>({0, 1, 2, 3, 4, 5}));
 }
 
+TEST(BubbleSort, sort_int_4) {
+    std::vector<int> vec = {1};
+
+    BubbleSort<int> bubble_sort(vec);
+    EXPECT_TRUE(bubble_sort.isSorted());
+
+    bubble_sort.sort();
+    EXPECT_TRUE(bubble_sort.isSorted());
+    EXPECT_EQ(bubble_sort.getVector(), std::vector<int>({1}));
+}
+
+TEST(BubbleSort, sort_int_5) {
+    std::vector<int> vec;
+
+    BubbleSort<int> bubble_sort(vec);
+    EXPECT_TRUE(bubble_sort.isSorted());
+
+    bubble_sort.sort();
+    EXPECT_TRUE(bubble_sort.isSorted());
+    EXPECT_EQ(bubble_sort.getVector(), std::vector<int>());
+}
+
+
+
 TEST(BubbleSort, sort_double_1) {
     std::vector<double> vec = {5.3, 2.34, 1.45, -2.444, 1.0, 0.};
 

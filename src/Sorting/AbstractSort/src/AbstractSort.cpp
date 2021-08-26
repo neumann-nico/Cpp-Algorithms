@@ -5,6 +5,7 @@ AbstractSort<T>::AbstractSort(std::vector<T> &vec) : vec(vec) {}
 
 template <typename T>
 bool AbstractSort<T>::isSorted() {
+    if (vec.size() <= 1) return true;
     for (int i=0; i < vec.size() - 1; ++i) {
         if (i+1 < vec.size() && vec[i] > vec[i+1]) return false;
     }
