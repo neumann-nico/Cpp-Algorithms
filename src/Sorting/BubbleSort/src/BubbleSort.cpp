@@ -1,22 +1,29 @@
 #include <BubbleSort/BubbleSort.h>
 
-template <typename T>
+template<typename T>
 BubbleSort<T>::BubbleSort(std::vector<T> &vec) : AbstractSort<T>(vec) {}
 
-template <typename T>
+template<typename T>
 void BubbleSort<T>::sort() {
-    for (int i=0; i < this->vec.size(); ++i) {
-        for (int j=i+1; j < this->vec.size(); ++j) {
-            if (this->vec[j] < this->vec[i]) {
-                T temp = this->vec[i];
-                this->vec[i] = this->vec[j];
-                this->vec[j] = temp;
+    for (int i = 0; i < this->vec.size(); ++i) {
+        for (int j = 0; j < this->vec.size() - i - 1; ++j) {
+            this->printVector();
+            if (this->vec[j + 1] < this->vec[j]) {
+                std::swap(this->vec[j], this->vec[j + 1]);
             }
         }
+        std::cout << std::endl;
     }
 }
 
-template class BubbleSort<int>;
-template class BubbleSort<float>;
-template class BubbleSort<double>;
-template class BubbleSort<char>;
+template
+class BubbleSort<int>;
+
+template
+class BubbleSort<float>;
+
+template
+class BubbleSort<double>;
+
+template
+class BubbleSort<char>;
