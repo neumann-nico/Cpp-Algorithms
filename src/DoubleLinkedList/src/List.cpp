@@ -86,7 +86,7 @@ template<typename T>
 std::vector<T> DoubleLinkedList<T>::getVector() {
     std::vector<T> vec(this->size);
     auto *temp = this->head;
-    for (auto &item : vec) {
+    for (auto &item: vec) {
         item = temp->getValue();
         temp = temp->getNext();
     }
