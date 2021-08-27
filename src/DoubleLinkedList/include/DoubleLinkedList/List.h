@@ -8,6 +8,8 @@ class DoubleLinkedList {
 public:
     DoubleLinkedList();
 
+    ~DoubleLinkedList();
+
     void addItemFront(T value);
 
     void addItemBack(T value);

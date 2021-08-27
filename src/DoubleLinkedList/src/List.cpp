@@ -158,6 +158,15 @@ void DoubleLinkedList<T>::removeLast() {
     }
 }
 
+template<typename T>
+DoubleLinkedList<T>::~DoubleLinkedList() {
+    while(this->head != nullptr) {
+        auto &temp = this->head;
+        this->head = this->head->getNext();
+        delete temp;
+    }
+}
+
 template
 class DoubleLinkedList<int>;
 
