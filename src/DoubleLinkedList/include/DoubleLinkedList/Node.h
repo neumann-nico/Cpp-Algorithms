@@ -5,11 +5,11 @@ class Node {
 public:
     explicit Node(T value);
 
-    T getValue();
+    T getValue() const;
 
-    Node<T> *getPrevious();
+    Node<T> *getPrevious() const;
 
-    Node<T> *getNext();
+    Node<T> *getNext() const;
 
     void setValue(T value);
 

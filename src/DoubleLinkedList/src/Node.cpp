@@ -5,17 +5,17 @@ template<typename T>
 Node<T>::Node(T value) : value(value), previous(nullptr), next(nullptr) {}
 
 template<typename T>
-T Node<T>::getValue() {
+T Node<T>::getValue() const {
     return this->value;
 }
 
 template<typename T>
-Node<T> *Node<T>::getPrevious() {
+Node<T> *Node<T>::getPrevious() const {
     return this->previous;
 }
 
 template<typename T>
-Node<T> *Node<T>::getNext() {
+Node<T> *Node<T>::getNext() const {
     return this->next;
 }
 
