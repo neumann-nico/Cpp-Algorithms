@@ -57,10 +57,6 @@ public:
 
     void updateNode(Node *node);
 
-    friend Graph<Edge> *convert_graph(Graph<FlowEdge> *);
-
-    friend Graph<FlowEdge> *convert_graph(Graph<Edge> *);
-
     friend Graph<Edge> *convert_to_residual(Graph<Edge> *);
 
 protected:
@@ -69,10 +65,6 @@ protected:
     std::map<std::pair<Node *, Node *>, T *> edge_association;
 
 };
-
-Graph<Edge> *convert_graph(Graph<FlowEdge> *);
-
-Graph<FlowEdge> *convert_graph(Graph<Edge> *);
 
 Graph<Edge> *convert_to_residual(Graph<Edge> *from);
 
