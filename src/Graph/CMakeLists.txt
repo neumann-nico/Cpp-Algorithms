@@ -1,10 +1,14 @@
 add_library(Graph
-        include/Graph/Edge.h
-        include/Graph/Graph.h
-        include/Graph/Node.h
-        src/Edge.cpp
-        src/Graph.cpp
-        src/Node.cpp
+        include/Graph/algorithm.h
+        include/Graph/edge.h
+        include/Graph/flowedge.h
+        include/Graph/graph.h
+        include/Graph/node.h
+        src/algorithm.cpp
+        src/edge.cpp
+        src/flowedge.cpp
+        src/graph.cpp
+        src/node.cpp
         )
 
 target_include_directories(Graph PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
