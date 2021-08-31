@@ -53,6 +53,14 @@ void Graph<T>::removeAllNodes() {
 }
 
 template<typename T>
+void Graph<T>::removeAllEdges() {
+    for (int i=0; i < this->edges.size(); ++i){
+        delete this->edges[i];
+    }
+    this->edges.clear();
+}
+
+template<typename T>
 Graph<T>::~Graph() {
     this->removeAllNodes();
 }
@@ -69,6 +77,25 @@ Node<T> *Graph<T>::getNode(T value) const {
     }
     return nullptr;
 }
+
+template<typename T>
+std::vector<Edge<T> *> Graph<T>::getEdges() const {
+    return this->edges;
+}
+
+template<typename T>
+Edge<T> *Graph<T>::getEdge(Node<T> *first, Node<T> *second) const {
+    for (auto &edge : this->edges){
+        if (edge->getFirst() == first && edge->getSecond() == second) return edge;
+    }
+    return nullptr;
+}
+
+template<typename T>
+Edge<T> *Graph<T>::getEdge(T first, T second) const {
+    return this->getEdge(this->getNode(first), this->getNode(first));
+}
+
 
 template
 class Graph<int>;

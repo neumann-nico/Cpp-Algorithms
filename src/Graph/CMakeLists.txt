@@ -1,6 +1,8 @@
 add_library(Graph
+        include/Graph/Edge.h
         include/Graph/Graph.h
         include/Graph/Node.h
+        src/Edge.cpp
         src/Graph.cpp
         src/Node.cpp
         )

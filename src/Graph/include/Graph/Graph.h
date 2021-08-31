@@ -1,7 +1,8 @@
 #pragma once
 
 #include <vector>
-#include "Graph/Node.h"
+#include "Node.h"
+#include "Edge.h"
 
 template<typename T>
 class Graph {
@@ -16,11 +17,19 @@ public:
 
     void removeAllNodes();
 
+    void removeAllEdges();
+
     void printGraph() const;
 
     std::vector<Node<T>*> getNodes() const;
 
+    std::vector<Edge<T>*> getEdges() const;
+
     Node<T>* getNode(T value) const;
+
+    Edge<T>* getEdge(Node<T>* first, Node<T>* second) const;
+
+    Edge<T>* getEdge(T first, T second) const;
 
     bool isEmpty() const;
 
@@ -28,5 +37,6 @@ public:
 
 private:
     std::vector<Node<T>*> nodes;
+    std::vector<Edge<T>*> edges;
     int size;
 };
