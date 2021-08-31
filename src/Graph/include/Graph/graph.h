@@ -63,7 +63,6 @@ protected:
     std::vector<Node *> nodes;
     std::map<Node *, std::vector<T *>> edges;
     std::map<std::pair<Node *, Node *>, T *> edge_association;
-
 };
 
 Graph<Edge> *convert_to_residual(Graph<Edge> *from);

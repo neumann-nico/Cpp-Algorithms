@@ -74,6 +74,8 @@ public:
 
     std::vector<Edge *> buildNegativeCycleFrom(Graph<Edge> *graph);
 
+    Graph<Edge>* getGraph() const;
+
 private:
     Graph<Edge> *graph;
     std::vector<std::pair<std::pair<Node *, Node *>, Edge *>> visitedPath;

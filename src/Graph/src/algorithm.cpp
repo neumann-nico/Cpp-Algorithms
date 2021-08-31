@@ -903,3 +903,7 @@ double Algorithm::successiveShortestPath() {
     }
     return value;
 }
+
+Graph<Edge> *Algorithm::getGraph() const {
+    return this->graph;
+}

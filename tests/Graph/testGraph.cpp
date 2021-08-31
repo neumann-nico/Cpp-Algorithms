@@ -19,29 +19,39 @@ protected:
 
 TEST_F(GraphTest, test_related_components1) {
     algorithm_->process(graphPath + "Graph2.txt");
+    EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 4);
+    EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
 TEST_F(GraphTest, test_related_components2) {
     algorithm_->process(graphPath + "Graph3.txt");
+    EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 4);
+    EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
 TEST_F(GraphTest, test_related_components3) {
     algorithm_->process(graphPath + "Graph_gross.txt");
+    EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 222);
+    EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
 TEST_F(GraphTest, test_related_components4) {
     GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "Graph_ganzgross.txt");
+    EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 9560);
+    EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
 TEST_F(GraphTest, test_related_components5) {
     GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "Graph_ganzganzgross.txt");
+    EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 306);
+    EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
 TEST_F(GraphTest, test_G_1_2_prim) {
@@ -57,7 +67,6 @@ TEST_F(GraphTest, test_G_1_2_kruskal) {
 TEST_F(GraphTest, test_G_1_20_prim) {
     algorithm_->process(graphPath + "G_1_20.txt");
     EXPECT_NEAR(algorithm_->prim(0), 36.86275, deviation);
-
 }
 
 TEST_F(GraphTest, test_G_1_20_kruskal) {
