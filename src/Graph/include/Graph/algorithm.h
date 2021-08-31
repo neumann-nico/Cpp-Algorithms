@@ -51,9 +51,9 @@ public:
     void TSPRecursive(Node *actual_node, double actual_costs, double &min_costs, int position,
                       std::vector<std::pair<std::pair<Node *, Node *>, Edge *>> &path, bool allow_shortcuts = true);
 
-    void dijkstra(int startKey, int endKey = -1, bool directed = false);
+    void dijkstra(double &distance, int startKey, int endKey = -1, bool directed = false);
 
-    bool mooreBellmanFord(int startKey, int endKey = -1, bool print = false);
+    bool mooreBellmanFord(double &distance, int startKey, int endKey = -1, bool print = false);
 
     bool mooreBellmanFord(int startKey, Graph<Edge> *graph);
 

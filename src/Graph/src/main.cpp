@@ -159,9 +159,10 @@ int main() {
 
             bool directedB = directed == "y";
 
+            double distance;
             auto start = std::chrono::system_clock::now();
             try {
-                algorithm.dijkstra(stoi(node), stoi(end_node), directedB);
+                algorithm.dijkstra(distance, stoi(node), stoi(end_node), directedB);
 
             } catch (const std::exception &e) {
                 std::cout << "Error during execution -> no path ?\n";
@@ -176,9 +177,10 @@ int main() {
             std::cout << "Select end node: ";
             std::cin >> end_node;
 
+            double distance;
             auto start = std::chrono::system_clock::now();
             try {
-                algorithm.mooreBellmanFord(stoi(node), stoi(end_node), true);
+                algorithm.mooreBellmanFord(distance, stoi(node), stoi(end_node), true);
 
             } catch (const std::exception &e) {
                 std::cout << "Error during execution -> no path ?\n";

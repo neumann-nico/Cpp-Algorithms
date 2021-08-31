@@ -349,7 +349,8 @@ void Algorithm::TSPRecursive(
     }
 }
 
-void Algorithm::dijkstra(int startKey, int endKey, bool directed) {
+void Algorithm::dijkstra(double &distance, int startKey, int endKey, bool directed) {
+    distance = INFINITY;
     this->graph->resetVisited();
 
     Node *start_node = this->graph->getNode(startKey);
@@ -385,6 +386,7 @@ void Algorithm::dijkstra(int startKey, int endKey, bool directed) {
     if (endKey != -1) {
         if (pred[endKey] == nullptr) throw std::exception();
         std::cout << startKey << " -> " << endKey << " (" << pred[endKey] << ") : " << dist[endKey] << std::endl;
+        distance = dist[endKey];
     } else {
         for (size_t i = 0; i < dist.size(); ++i) {
             if (pred[i] != nullptr)
@@ -394,7 +396,8 @@ void Algorithm::dijkstra(int startKey, int endKey, bool directed) {
 }
 
 
-bool Algorithm::mooreBellmanFord(int startKey, int endKey, bool print) {
+bool Algorithm::mooreBellmanFord(double &distance, int startKey, int endKey, bool print) {
+    distance = INFINITY;
     std::map<Node *, std::vector<Edge *>> edges = this->graph->getAllEdges();
 
     Node *start_node = this->graph->getNode(startKey);
@@ -440,6 +443,7 @@ bool Algorithm::mooreBellmanFord(int startKey, int endKey, bool print) {
         if (endKey != -1) {
             if (pred[endKey] == nullptr) throw std::exception();
             std::cout << startKey << " -> " << endKey << " (" << pred[endKey] << ") : " << dist[endKey] << std::endl;
+            distance = dist[endKey];
         } else {
             for (size_t i = 0; i < dist.size(); ++i) {
                 if (pred[i] != nullptr)
