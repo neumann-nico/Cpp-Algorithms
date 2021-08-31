@@ -1,9 +1,9 @@
 #include "Graph/edge.h"
 
 Edge::Edge(Node *origin, Node *destination, double cost, int direction) : origin(origin),
-                                                                                  destination(destination),
-                                                                                  cost(cost),
-                                                                                  direction(direction) {}
+                                                                          destination(destination),
+                                                                          cost(cost),
+                                                                          direction(direction) {}
 
 Node *Edge::getOtherNode(Node *node) const {
     if (node == this->origin) return this->destination;

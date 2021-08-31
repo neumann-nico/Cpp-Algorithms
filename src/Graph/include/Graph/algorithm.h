@@ -5,9 +5,7 @@
 #include <cmath>
 
 #include "graph.h"
-//#include "flowgraph.h"
 #include "edge.h"
-#include "flowedge.h"
 
 class Algorithm {
 public:

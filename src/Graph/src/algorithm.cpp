@@ -3,12 +3,12 @@
 
 Algorithm::Algorithm() : graph(new Graph<Edge>()) {}
 
-Algorithm::Algorithm(const std::string& inputfile) : graph(new Graph<Edge>(inputfile)) {
+Algorithm::Algorithm(const std::string &inputfile) : graph(new Graph<Edge>(inputfile)) {
     std::cout << "Processed graph " << inputfile << " with " << this->graph->getNodeSize() << " nodes and "
               << this->graph->getEdgeSize() << " edges." << std::endl;
 }
 
-void Algorithm::process(const std::string& inputfile, int direction) {
+void Algorithm::process(const std::string &inputfile, int direction) {
     if (this->graph->process(inputfile, direction))
         std::cout << "Processed graph " << inputfile << " with " << this->graph->getNodeSize() << " nodes and "
                   << this->graph->getEdgeSize() << " edges." << std::endl;
@@ -179,7 +179,7 @@ double Algorithm::kruskal(std::map<Node *, std::vector<Edge *>> &mst_edges) {
     std::map<Node *, std::vector<Edge *>> edges = this->graph->getAllEdges();
 
     // push all edges into a vector
-    for (auto & edge : edges) {
+    for (auto &edge: edges) {
         sortedEdges.insert(sortedEdges.end(), edge.second.begin(), edge.second.end());
     }
 
