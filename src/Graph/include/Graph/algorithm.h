@@ -13,9 +13,9 @@ class Algorithm {
 public:
     Algorithm();
 
-    Algorithm(const std::string &inputfile);
+    explicit Algorithm(const std::string &inputfile);
 
-    void process(const std::string &inputfile);
+    void process(const std::string &inputfile, int direction = Direction::UNDIRECTED);
 
     void printVisitedPath();
 

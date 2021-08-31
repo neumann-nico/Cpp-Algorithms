@@ -8,8 +8,8 @@ Algorithm::Algorithm(const std::string& inputfile) : graph(new Graph<Edge>(input
               << this->graph->getEdgeSize() << " edges." << std::endl;
 }
 
-void Algorithm::process(const std::string& inputfile) {
-    if (this->graph->process(inputfile))
+void Algorithm::process(const std::string& inputfile, int direction) {
+    if (this->graph->process(inputfile, direction))
         std::cout << "Processed graph " << inputfile << " with " << this->graph->getNodeSize() << " nodes and "
                   << this->graph->getEdgeSize() << " edges." << std::endl;
     else

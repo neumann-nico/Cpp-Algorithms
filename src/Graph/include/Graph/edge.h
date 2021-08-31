@@ -31,9 +31,9 @@ public:
 
     int getDirection() const { return this->direction; }
 
-    double getCapacity() const { return this->capacity; }
+    virtual double getCapacity() const { return this->capacity; }
 
-    double getFlow() const { return this->flow; }
+    virtual double getFlow() const { return this->flow; }
 
     void setOrigin(Node *node) { this->origin = node; };
 
@@ -45,9 +45,9 @@ public:
 
     void setDirection(int direction) { this->direction = direction; }
 
-    void setCapacity(double capacity) { this->capacity = capacity; }
+    virtual void setCapacity(double capacity) { this->capacity = capacity; }
 
-    void setFlow(double filled) { this->flow = filled; }
+    virtual void setFlow(double filled) { this->flow = filled; }
 
     bool operator()(const Edge *lhs, const Edge *rhs) const {
         return lhs->getCost() > rhs->getCost();

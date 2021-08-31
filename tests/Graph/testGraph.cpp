@@ -145,6 +145,7 @@ TEST_F(GraphTest, test_K_10e_doubleTree){
 }
 
 TEST_F(GraphTest, test_K_12_tryAllPossibilities){
+    GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "K_12.txt");
     EXPECT_TRUE(std::abs(algorithm_->tryAllPossibilities() - 45.19) < deviation);
 }
@@ -161,6 +162,7 @@ TEST_F(GraphTest, test_K_12_doubleTree){
 }
 
 TEST_F(GraphTest, test_K_12e_tryAllPossibilities){
+    GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "K_12e.txt");
     EXPECT_TRUE(std::abs(algorithm_->tryAllPossibilities() - 36.13) < deviation);
 }

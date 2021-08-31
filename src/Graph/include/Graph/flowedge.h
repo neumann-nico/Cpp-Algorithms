@@ -14,13 +14,13 @@ public:
 
     friend std::ostream &operator<<(std::ostream &, const FlowEdge *);
 
-    double getCapacity() const { return this->capacity; }
+    double getCapacity() const override{ return this->capacity; }
 
-    double getFlow() const { return this->flow; }
+    double getFlow() const override{ return this->flow; }
 
-    void setCapacity(double capacity) { this->capacity = capacity; }
+    void setCapacity(double capacity) override { this->capacity = capacity; }
 
-    void setFlow(double filled) { this->flow = filled; }
+    void setFlow(double filled) override{ this->flow = filled; }
 
     bool operator()(const FlowEdge *lhs, const FlowEdge *rhs) const {
         return lhs->getCost() > rhs->getCost();

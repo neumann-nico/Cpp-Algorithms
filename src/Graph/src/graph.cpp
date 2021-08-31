@@ -13,8 +13,8 @@ Graph<T>::Graph() {
 }
 
 template<class T>
-Graph<T>::Graph(std::string inputfile) {
-    process(inputfile);
+Graph<T>::Graph(std::string inputfile, int direction) {
+    process(inputfile, direction);
 }
 
 template<class T>
@@ -44,7 +44,7 @@ Graph<T>::~Graph() {
 }
 
 template<class T>
-bool Graph<T>::process(std::string inputfile) {
+bool Graph<T>::process(std::string inputfile, int direction) {
     assert(std::filesystem::exists(inputfile));
     if (!this->edges.empty() && !this->edges.empty()) {
         std::list<T *> edge_list;
@@ -101,7 +101,6 @@ bool Graph<T>::process(std::string inputfile) {
             }
         }
 
-
         // process edges
         double cost = 1.0;
         double capacity = 0.0;
@@ -125,12 +124,14 @@ bool Graph<T>::process(std::string inputfile) {
                 capacity = cost;
             }
 
-            T *edge = new T(node1, node2, cost, Direction::FORWARD);
+            T *edge = new T(node1, node2, cost, direction);
             edge->setCapacity(capacity);
             this->edges[node1].push_back(edge);
-            //this->edges[node2].push_back(edge);
             this->edge_association[std::make_pair(node1, node2)] = edge;
-            //this->edge_association[std::make_pair(node2, node1)] = edge;
+            if (direction == Direction::UNDIRECTED){
+                this->edge_association[std::make_pair(node2, node1)] = edge;
+                this->edges[node2].push_back(edge);
+            }
         } while (getline(file, line));
     } catch (std::exception e) {
         std::cerr << "Error in processing graph!" << std::endl;

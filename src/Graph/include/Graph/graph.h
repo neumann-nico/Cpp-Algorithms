@@ -21,11 +21,11 @@ class Graph {
 public:
     Graph();
 
-    Graph(std::string inputfile);
+    explicit Graph(std::string inputfile, int direction = Direction::UNDIRECTED);
 
     ~Graph();
 
-    bool process(std::string inputfile);
+    bool process(std::string inputfile, int direction);
 
     void resetVisited();
 
