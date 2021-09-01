@@ -2,11 +2,31 @@
 
 ## About
 This project contains a collection of C++ algorithms.
-It is divided into different topics. As build system CMake is used.
-As continuous integration, Travis CI is used and for test cases GoogleTest.
+It is divided into different topics like data structures for lists and graphs.
+Various algorithms are implemented on the data structures.
+As build system CMake is used and C++17.
+
+Currently, the following projects are implemented:
+
+Backtracking
+* SudokuSolver
+  * readSudoku (Commandline, File), isValid, isSolved, solveSudoku, printSudoku
+
+DoubleLinkedList
+  * addItemFront, addItemBack, removeItem, reverse, getSize, printList
+
+Graph
+  * operations: processGraphFromFile, get/set/delete Nodes/Edges
+  * algorithms: DFS/BFS, prim, kruskal, nearestNeighbor, doubleTree, branchAndBound, dijkstra, mooreBellmanFord, edmondsKarp, cycleCanceling, successiveShortestPath
+
+Sorting
+  * BubbleSort, InsertionSort, MergeSort, QuickSort and a performance analysis of all sorting algorithms
+
+As continuous integration, Travis CI is used which builds the projects and executes the given GoogleTest test cases.
 
 ## How to use
-The project can be imported into CMake compatible IDE's like Clion and Qt.
+The project can be imported into CMake compatible IDE's like Clion or Qt.
+The top-level CMakeLists.txt is automatically processed and the user is able to run the projects or the test cases.
 
 Alternatively:
 
