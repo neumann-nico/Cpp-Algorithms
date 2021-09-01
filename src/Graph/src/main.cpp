@@ -180,7 +180,7 @@ int main() {
             double distance;
             auto start = std::chrono::system_clock::now();
             try {
-                algorithm.mooreBellmanFord(distance, stoi(node), stoi(end_node), true);
+                algorithm.mooreBellmanFord(distance, stoi(node), stoi(end_node), true, true);
 
             } catch (const std::exception &e) {
                 std::cout << "Error during execution -> no path ?\n";

@@ -17,37 +17,35 @@ protected:
     Algorithm *algorithm_;
 };
 
-TEST_F(GraphTest, test_related_components1) {
+TEST_F(GraphTest, test_Graph2_related_components) {
     algorithm_->process(graphPath + "Graph2.txt");
     EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 4);
     EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
-TEST_F(GraphTest, test_related_components2) {
+TEST_F(GraphTest, test_Graph3_related_components) {
     algorithm_->process(graphPath + "Graph3.txt");
     EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 4);
     EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
-TEST_F(GraphTest, test_related_components3) {
+TEST_F(GraphTest, test_Graph_gross_related_components) {
     algorithm_->process(graphPath + "Graph_gross.txt");
     EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 222);
     EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
-TEST_F(GraphTest, test_related_components4) {
-    GTEST_SKIP(); // too slow
+TEST_F(GraphTest, test_Graph_ganzgross_related_components) {
     algorithm_->process(graphPath + "Graph_ganzgross.txt");
     EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 9560);
     EXPECT_TRUE(algorithm_->getGraph()->allVisited());
 }
 
-TEST_F(GraphTest, test_related_components5) {
-    GTEST_SKIP(); // too slow
+TEST_F(GraphTest, test_Graph_ganzganzgross_related_components) {
     algorithm_->process(graphPath + "Graph_ganzganzgross.txt");
     EXPECT_FALSE(algorithm_->getGraph()->allVisited());
     EXPECT_EQ(algorithm_->relatedComponents(), 306);
@@ -115,7 +113,6 @@ TEST_F(GraphTest, test_G_100_200_kruskal) {
     EXPECT_NEAR(algorithm_->kruskal(), 27550.51488, deviation);
 }
 
-
 TEST_F(GraphTest, test_K_10_tryAllPossibilities) {
     algorithm_->process(graphPath + "K_10.txt");
     EXPECT_NEAR(algorithm_->tryAllPossibilities(), 38.41, deviation);
@@ -151,19 +148,16 @@ TEST_F(GraphTest, test_K_10e_doubleTree) {
 }
 
 TEST_F(GraphTest, test_K_12_tryAllPossibilities) {
-    GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "K_12.txt");
     EXPECT_NEAR(algorithm_->tryAllPossibilities(), 45.19, deviation);
 }
 
 TEST_F(GraphTest, test_K_12_branchAndBound) {
-    GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "K_12.txt");
     EXPECT_NEAR(algorithm_->branchAndBound(), 45.19, deviation);
 }
 
 TEST_F(GraphTest, test_K_12_doubleTree) {
-    GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "K_12.txt");
     double value = algorithm_->doubleTree(0);
     EXPECT_GE(value, 45.19);
@@ -171,19 +165,16 @@ TEST_F(GraphTest, test_K_12_doubleTree) {
 }
 
 TEST_F(GraphTest, test_K_12e_tryAllPossibilities) {
-    GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "K_12e.txt");
     EXPECT_NEAR(algorithm_->tryAllPossibilities(), 36.13, deviation);
 }
 
 TEST_F(GraphTest, test_K_12e_branchAndBound) {
-    GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "K_12e.txt");
     EXPECT_NEAR(algorithm_->branchAndBound(), 36.13, deviation);
 }
 
 TEST_F(GraphTest, test_K_12e_doubleTree) {
-    GTEST_SKIP(); // too slow
     algorithm_->process(graphPath + "K_12e.txt");
     double value = algorithm_->doubleTree(0);
     EXPECT_GE(value, 36.13);
@@ -203,13 +194,6 @@ TEST_F(GraphTest, test_Wege1_mooreBellmanFord) {
     bool negative_cycle = !algorithm_->mooreBellmanFord(value, 2, 0, true);
     EXPECT_NEAR(value, 6., deviation);
     EXPECT_FALSE(negative_cycle);
-}
-
-TEST_F(GraphTest, test_Wege2_dijkstra) {
-    algorithm_->process(graphPath + "Wege2.txt", Direction::FORWARD);
-    double value;
-    algorithm_->dijkstra(value, 2, 0, true);
-    EXPECT_NEAR(value, 2., deviation);
 }
 
 TEST_F(GraphTest, test_Wege2_mooreBellmanFord) {
@@ -238,7 +222,7 @@ TEST_F(GraphTest, test_G_1_2_directed_mooreBellmanFord) {
 TEST_F(GraphTest, test_G_1_2_undirected_mooreBellmanFord) {
     algorithm_->process(graphPath + "G_1_2.txt", Direction::UNDIRECTED);
     double value;
-    bool negative_cycle = !algorithm_->mooreBellmanFord(value, 0, 1, true);
+    bool negative_cycle = !algorithm_->mooreBellmanFord(value, 0, 1, false);
     EXPECT_NEAR(value, 2.36802, deviation);
     EXPECT_FALSE(negative_cycle);
 }

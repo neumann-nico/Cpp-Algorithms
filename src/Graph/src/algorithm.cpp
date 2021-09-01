@@ -396,7 +396,7 @@ void Algorithm::dijkstra(double &distance, int startKey, int endKey, bool direct
 }
 
 
-bool Algorithm::mooreBellmanFord(double &distance, int startKey, int endKey, bool print) {
+bool Algorithm::mooreBellmanFord(double &distance, int startKey, int endKey, bool directed, bool print) {
     distance = INFINITY;
     std::map<Node *, std::vector<Edge *>> edges = this->graph->getAllEdges();
 
@@ -422,6 +422,14 @@ bool Algorithm::mooreBellmanFord(double &distance, int startKey, int endKey, boo
                     dist[destination->getKey()] = dist[origin->getKey()] + edge->getCost();
                     pred[destination->getKey()] = origin;
                 }
+
+                if (!directed) {
+                    if (dist[destination->getKey()] + edge->getCost() < dist[origin->getKey()]) {
+                        changes = true;
+                        dist[origin->getKey()] = dist[destination->getKey()] + edge->getCost();
+                        pred[origin->getKey()] = destination;
+                    }
+                }
             }
         }
     }
@@ -438,12 +446,12 @@ bool Algorithm::mooreBellmanFord(double &distance, int startKey, int endKey, boo
             }
         }
     }
+    if (endKey != -1) distance = dist[endKey];
 
     if (print) {
         if (endKey != -1) {
             if (pred[endKey] == nullptr) throw std::exception();
             std::cout << startKey << " -> " << endKey << " (" << pred[endKey] << ") : " << dist[endKey] << std::endl;
-            distance = dist[endKey];
         } else {
             for (size_t i = 0; i < dist.size(); ++i) {
                 if (pred[i] != nullptr)

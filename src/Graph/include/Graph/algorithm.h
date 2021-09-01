@@ -51,7 +51,7 @@ public:
 
     void dijkstra(double &distance, int startKey, int endKey = -1, bool directed = false);
 
-    bool mooreBellmanFord(double &distance, int startKey, int endKey = -1, bool print = false);
+    bool mooreBellmanFord(double &distance, int startKey, int endKey = -1, bool directed = true, bool print = false);
 
     bool mooreBellmanFord(int startKey, Graph<Edge> *graph);
 
